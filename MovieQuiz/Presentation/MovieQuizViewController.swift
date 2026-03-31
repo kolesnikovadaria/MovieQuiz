@@ -13,27 +13,28 @@ final class MovieQuizViewController: UIViewController {
     }
         private func show(quiz step: QuizStepViewModel) {
             imageView.layer.borderWidth = 0
+            imageView.layer.cornerRadius = 20
             imageView.image = step.image
             textLabel.text = step.question
             counterLabel.text = step.questionNumber
         }
 
         
-        struct ViewModel {
+        private struct ViewModel {
           let image: UIImage
           let question: String
           let questionNumber: String
         }
 
        
-        struct QuizResultsViewModel {
+        private struct QuizResultsViewModel {
           let title: String
           let text: String
           let buttonText: String
         }
         
     
-    struct QuizQuestion {
+    private struct QuizQuestion {
         let image: String
         let text: String
         let correctAnswer: Bool
@@ -61,7 +62,7 @@ final class MovieQuizViewController: UIViewController {
             correctAnswers += 1}
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor
+        imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         imageView.layer.cornerRadius = 20
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
