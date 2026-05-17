@@ -80,6 +80,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)"
         )
     }
+
     
     func yesButtonClicked() {
         didAnswer(isYes: true)

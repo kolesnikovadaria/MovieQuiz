@@ -7,8 +7,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private var yesButton: UIButton!
-    @IBOutlet private var noButton: UIButton!
     
     private var presenter: MovieQuizPresenter!
     private var alertPresenter = AlertPresenter()
@@ -22,8 +20,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         presenter = MovieQuizPresenter(viewController: self)
         imageView.layer.cornerRadius = 20
         showLoadingIndicator()
-        textLabel.text = ""
-        counterLabel.text = ""    }
+    }
 
     // MARK: - Actions
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
