@@ -11,6 +11,8 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBOutlet private var noButton: UIButton!
     
     private var presenter: MovieQuizPresenter!
+    private var alertPresenter = AlertPresenter()
+    private var didStartGame = false
     
     // MARK: - Lifecycle
     
@@ -19,7 +21,9 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         super.viewDidLoad()
         presenter = MovieQuizPresenter(viewController: self)
         imageView.layer.cornerRadius = 20
-    }
+        showLoadingIndicator()
+        textLabel.text = ""
+        counterLabel.text = ""    }
 
     // MARK: - Actions
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
