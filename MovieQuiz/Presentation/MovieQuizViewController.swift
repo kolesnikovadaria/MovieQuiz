@@ -20,6 +20,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         presenter = MovieQuizPresenter(viewController: self)
         imageView.layer.cornerRadius = 20
         showLoadingIndicator()
+        counterLabel.accessibilityIdentifier = "Index"
     }
 
     // MARK: - Actions
@@ -43,17 +44,17 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     func show(quiz result: QuizResultsViewModel) {
         let alert = UIAlertController(
-                    title: result.title,
-                    message: result.text,
-                    preferredStyle: .alert)
-                    
-                let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in
-                        guard let self = self else { return }
-                        self.presenter.restartGame()
-                }
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
-            }
+            title: result.title,
+            message: result.text,
+            preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.presenter.restartGame()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     func highlightImageBorder(isCorrectAnswer: Bool) {
@@ -72,23 +73,22 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         activityIndicator.isHidden = true
     }
 
-    func showNetworkError(message: String) {
-        hideLoadingIndicator()
-
-        let alert = UIAlertController(
-            title: "Ошибка",
-            message: message,
-            preferredStyle: .alert)
-
-        let action = UIAlertAction(title: "Попробовать еще раз",
-                                   style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.presenter.restartGame()
+        func showNetworkError(message: String) {
+            hideLoadingIndicator()
+            
+            let alert = UIAlertController(
+                title: "Ошибка",
+                message: message,
+                preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Попробовать еще раз",
+                                       style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                self.presenter.restartGame()
+            }
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
         }
-        alert.addAction(action)
-    }
-    
-
-    
 }
 
