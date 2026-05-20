@@ -15,11 +15,12 @@ final class AlertPresenter {
             preferredStyle: .alert)
 
         let action = UIAlertAction(title: model.buttonText, style: .default) { _ in
-            model.completion()
+            DispatchQueue.main.async {
+                model.completion()
+            }
         }
-
+        
         alert.addAction(action)
-
-        vc.present(alert, animated: true, completion: nil)
+        vc.present(alert, animated: true)
     }
 }
