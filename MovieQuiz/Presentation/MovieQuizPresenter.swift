@@ -67,8 +67,9 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         correctAnswers = 0
         currentQuestion = nil
         
-        viewController?.showLoadingIndicator()
-        questionFactory?.loadData()
+//        viewController?.showLoadingIndicator()
+//        questionFactory?.loadData()
+        questionFactory?.requestNextQuestion() 
 
     }
     
@@ -116,18 +117,18 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     
     private func proceedToNextQuestionOrResults() {
         if isLastQuestion() {
-            
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
-                text: makeResultsMessage(),
-                buttonText: "Сыграть ещё раз")
+                text: "Ваш результат: \(correctAnswers)/\(questionsAmount)",
+                buttonText: "Сыграть ещё раз"
+            )
             viewController?.show(quiz: viewModel)
         } else {
             switchToNextQuestion()
             questionFactory?.requestNextQuestion()
         }
     }
-    
+        
     func makeResultsMessage() -> String {
         statisticService.store(correct: correctAnswers, total: questionsAmount)
         

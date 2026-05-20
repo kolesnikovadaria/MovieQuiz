@@ -88,6 +88,8 @@ final class MovieQuizUITests: XCTestCase {
         let indexLabel = app.staticTexts["Index"]
         XCTAssertEqual(indexLabel.label, "1/10")
     }
+    
+   
 
     @MainActor
     func testExample() throws {
